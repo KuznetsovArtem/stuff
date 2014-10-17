@@ -1,0 +1,23 @@
+{
+  "name": "stuff",
+  "version": "0.0.0",
+  "homepage": "https://github.com/KuznetsovArtem/stuff",
+  "authors": [
+    "artem <artem@gypost.com>"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.2.0"
+  }
+}
