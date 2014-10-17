@@ -8,25 +8,45 @@
 <script type="text/javascript" src="../components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="qrcode.min.js"></script>
 <link rel="stylesheet" href="../components/bootstrap/dist/css/bootstrap.min.css"></script>
+<style>
+input[type=text] {
+	width: 100%;
+	margin-left: -25px;
+}
+textarea {
+	width: 100%
+}
+#toggleInput {
+	width: 40px;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.pull-down {
+	height: 100px;
+}
+</style>
 </head>
 <body>
 
-<div class="container">
+<div id="app" class="container">
 	<div class="row">
-		<div class="col-lg-12">
+		<div class="col-lg-12 pull-down">
 			
 		</div>
 		<div class="col-lg-12">
-			<input id="text" type="text" value="enter" style="width:80%" /><br />
-			<div id="qrcode" style="margin: 0 auto; width:300px; height:300px; margin-top:15px;"></div>
+			<input id="text" type="text" value="enter" />
+			<button id="toggleInput" class="btn">a</button>
+			<br />
+			<div id="qrcode" style="margin: 0 auto; width:410px; height:410px; margin-top:15px;"></div>
 		</div>
 	</div>
 </div>
 
 <script type="text/javascript">
 var qrcode = new QRCode(document.getElementById("qrcode"), {
-	width : 300,
-	height : 300
+	width : 410,
+	height : 410
 });
 function makeCode () {		
 	var elText = document.getElementById("text");
@@ -39,11 +59,23 @@ function makeCode () {
 }
 makeCode();
 
-$("#text").
-	on("blur", function () {
+$('#toggleInput').on("click", function() {
+	$(this).text() === 'i' ? $(this).text('a') : $(this).text('i');
+	var savedText = $('#text').text()||$('#text').val(); 
+	if ($('#text').attr('type') === 'text') {
+		$('#text').replaceWith('<textarea id="text"></textarea>');
+	} else {
+		$('#text').replaceWith('<input id="text" type="text" value="" />');
+	}
+	$('#text').text(savedText).val(savedText);
+	
+});
+
+$("#app").
+	on("blur", '#text', function () {
 		makeCode();
 	}).
-	on("keydown", function (e) {
+	on("keydown", '#text', function (e) {
 		if (e.keyCode == 13) {
 			makeCode();
 		}
