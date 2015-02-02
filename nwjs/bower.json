@@ -1,0 +1,22 @@
+{
+  "name": "nwjs",
+  "version": "0.0.0",
+  "homepage": "https://github.com/KuznetsovArtem/stuff",
+  "authors": [
+    "artem <artem@gypost.com>"
+  ],
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "tests"
+  ]
+}

@@ -4,7 +4,7 @@
   "window": {
     "toolbar": false,
     "width": 800,
-    "height": 400
+    "height": 800
   },
   "version": "0.0.0",
   "description": "the test of nw.js",
