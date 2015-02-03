@@ -1,8 +1,8 @@
 {
   "name": "WindowedNode",
-  "main": "index.html",
+  "main": "game.html",
   "window": {
-    "toolbar": false,
+    "toolbar": true,
     "width": 800,
     "height": 800
   },

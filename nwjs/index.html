@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<title>three.js css3d - youtube</title>
+		<title>Artem | stuff | tests | 3Dyoutube</title>
 		<style>
 			html, body {
 				height: 100%;
@@ -27,7 +26,7 @@
 			#search input {
 				color: #ffffff;
 				background-color: transparent;
-				border: 1px solid #0080ff;
+				border: 3px solid #cecece;
 				padding: 10px;
 				font-size: 20px;
 				text-transform: uppercase;
@@ -35,25 +34,25 @@
 			}
 
 			#search button {
-				color: #0080ff;
+				color: #cecece;
 				background-color: transparent;
-				border: 1px solid #0080ff;
+				border: 3px solid #cecece;
 				padding: 10px;
 				font-size: 20px;
 				text-transform: uppercase;
 				cursor: pointer;
 			}
+			#search button:hover {
+				color: #fff;
+			}
 		</style>
 	</head>
 	<body>
 		<script src="components/three.js/three.min.js"></script>
-
 		<script src="components/tween.js"></script>
 		<script src="components/css3d.js"></script>
-
 		<div id="container"></div>
 		<div id="search"><input id="query" type="text" value="cats"><button id="button">search</button></div>
-
 		<script>
 			var camera, scene, renderer;
 			var player;
@@ -97,11 +96,9 @@
 				object.position.z = Math.random() * - 5000;
 
 				//
-
 				image.addEventListener( 'load', function ( event ) {
 
 					button.style.visibility = 'visible';
-
 					new TWEEN.Tween( object.position )
 						.to( { y: Math.random() * 2000 - 1000 }, 2000 )
 						.easing( TWEEN.Easing.Exponential.Out )
@@ -110,32 +107,24 @@
 				}, false );
 
 				dom.addEventListener( 'mouseover', function () {
-
 					button.style.WebkitFilter = '';
 					blocker.style.background = 'rgba(0,0,0,0)';
-
 				}, false );
 
 				dom.addEventListener( 'mouseout', function () {
-
 					button.style.WebkitFilter = 'grayscale()';
 					blocker.style.background = 'rgba(0,0,0,0.75)';
-
 				}, false );
 
 				dom.addEventListener( 'click', function ( event ) {
-
 					event.stopPropagation();
-
 					auto = false;
-
 					if ( player !== undefined ) {
 
 						player.parentNode.removeChild( player );
 						player = undefined;
 
 					}
-
 					player = document.createElement( 'iframe' );
 					player.style.position = 'absolute';
 					player.style.width = '480px';
@@ -143,31 +132,23 @@
 					player.style.border = '0px';
 					player.src = 'http://www.youtube.com/embed/' + entry.id.$t.split( ':' ).pop() + '?rel=0&autoplay=1&controls=1&showinfo=0';
 					this.appendChild( player );
-
 					//
-
 					var prev = object.position.z + 400;
 
 					new TWEEN.Tween( camera.position )
 						.to( { x: object.position.x, y: object.position.y - 25 }, 1500 )
 						.easing( TWEEN.Easing.Exponential.Out )
 						.start();
-
 					new TWEEN.Tween( { value: prev } )
 						.to( { value: 0  }, 2000 )
 						.onUpdate( function () {
-
 							move( this.value - prev );
 							prev = this.value;
-
 						} )
 						.easing( TWEEN.Easing.Exponential.Out )
 						.start();
-
 				}, false );
-
 				return object;
-
 			};
 
 			init();
@@ -177,54 +158,36 @@
 
 				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 5000 );
 				camera.position.y = - 25;
-
 				scene = new THREE.Scene();
-
 				renderer = new THREE.CSS3DRenderer();
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.domElement.style.position = 'absolute';
 				renderer.domElement.style.top = 0;
 				document.getElementById( 'container' ).appendChild( renderer.domElement );
-
 				//
-
 				var query = document.getElementById( 'query' );
 				query.addEventListener( 'keyup', function ( event ) {
-
 					if ( event.keyCode === 13 ) {
-
 						search( query.value );
-
 					}
-
 				}, false );
 
 				var button = document.getElementById( 'button' );
 				button.addEventListener( 'click', function ( event ) {
-
 					search( query.value );
-
 				}, false );
 
 				if ( window.location.hash.length > 0 ) {
-
 					query.value = window.location.hash.substr( 1 );
-
 				}
 
 				search( query.value );
-
 				document.body.addEventListener( 'mousewheel', onMouseWheel, false );
-
 				document.body.addEventListener( 'click', function ( event ) {
-
 					auto = true;
-
 					if ( player !== undefined ) {
-
 						player.parentNode.removeChild( player );
 						player = undefined;
-
 					}
 
 					new TWEEN.Tween( camera.position )
@@ -233,93 +196,58 @@
 							.start();
 
 				}, false );
-
 				window.addEventListener( 'resize', onWindowResize, false );
-
 			}
 
 			function search( query ) {
-
 				window.location.hash = query;
-
 				for ( var i = 0, l = scene.children.length; i < l; i ++ ) {
-
 					( function () {
-
 						var object = scene.children[ i ];
 						var delay = i * 15;
-
 						new TWEEN.Tween( object.position )
 							.to( { y: - 2000 }, 1000 )
 							.delay( delay )
 							.easing( TWEEN.Easing.Exponential.In )
 							.onComplete( function () {
-
 								scene.remove( object );
-
 							} )
 							.start();
-
 					} )();
-
 				}
-
 				var request = new XMLHttpRequest();
 				request.addEventListener( 'load', onData, false );
 				request.open( 'GET', 'https://gdata.youtube.com/feeds/api/videos?v=2&alt=json&max-results=50&q=' + query, true );
 				request.send( null );
-
 			}
 			
 			function onData( event ) {
-
 				var data = JSON.parse( event.target.responseText );
 				var entries = data.feed.entry;
-
 				// console.log( entries );
-
 				for ( var i = 0; i < entries.length; i ++ ) {
-
 					( function ( data, time ) {
-
 						setTimeout( function () {
-
 							scene.add( new Element( data ) );
-
 						}, time );
-
-					} )( entries[ i ], i * 15 );
-				
+					} )( entries[ i ], i * 15 );			
 				}
-
 			}
 
 			function move( delta ) {
-
 				for ( var i = 0; i < scene.children.length; i ++ ) {
-
 					var object = scene.children[ i ];
-
 					object.position.z += delta;
-
 					if ( object.position.z > 0 ) {
-
 						object.position.z -= 5000;
-
 					} else if ( object.position.z < - 5000 ) {
-
 						object.position.z += 5000;
-
 					}
-
 				}
-
 			}
 
 			function onMouseWheel( event ) {
-
 				move( event.wheelDelta );
-
 			}
 
 			function onWindowResize() {
@@ -332,19 +260,12 @@
 			}
 
 			function animate() {
-
 				requestAnimationFrame( animate );
-
 				TWEEN.update();
-
 				if ( auto === true ) {
-
 					move( 1 );
-
 				}
-
 				renderer.render( scene, camera );
-
 			}
 
 		</script>
