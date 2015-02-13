@@ -2,10 +2,11 @@
 
 <header class="hero-unit" id="banner">
     <div class="container">
-
+        <h2>{{post.entry.title}}</h2>
     </div>
 </header>
 
 <div class="container">
-    <h2>[[ITEM]]</h2>
+    <p>{{post.entry.body}}</p>
+    <p>{{post.entry.id}} - {{post.entry.created | date : format : timezone}}</p>
 </div>
