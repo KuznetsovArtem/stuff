@@ -8,6 +8,6 @@ angular.module('ngblogApp')
                 controller: 'MainCtrl'
             })
             .when('/item', {
-                templateUrl: 'app/item/item.html',
+                templateUrl: 'app/item/item.html'
             });
   });

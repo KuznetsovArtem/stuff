@@ -10,11 +10,6 @@ angular.module('ngblogApp', [
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
-        .when('/post/:id?', {
-            templateUrl: 'app/blogpost/post.html',
-            controller: 'blogPostCtrl',
-            controllerAs: 'post'
-        })
       .otherwise({
         redirectTo: '/'
       });
