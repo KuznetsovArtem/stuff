@@ -9,6 +9,10 @@ angular.module('ngblogApp')
       socket.syncUpdates('thing', $scope.awesomeThings);
     });
 
+    $http.get('/api/bp').success(function(posts) {
+      $scope.blogPosts = posts;
+    });
+
     $scope.addThing = function() {
       if($scope.newThing === '') {
         return;

@@ -17,33 +17,6 @@ angular.module('ngblogApp', [
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
   })
-
-    .controller('blogPostCtrl', function($routeParams) {
-        var posts = [this.entry = {
-            id: 1,
-            title: 'Some Post #1',
-            body: 'YooHoo, blog body',
-            created: new Date()
-        },{
-            id: 2,
-            title: 'Some Post #2',
-            body: 'I\'ll be in mongodb',
-            created: new Date()
-        },{
-            id: 3,
-            title: 'Post #3',
-            body: 'blah-blah-blah',
-            created: new Date()
-        },{
-            id: 4,
-            title: 'Post #4',
-            body: 'O_O',
-            created: new Date()
-        }];
-        this.entry = posts[$routeParams.id];
-        return this;
-    })
-
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
     return {
       // Add authorization token to headers

@@ -5,7 +5,7 @@
     </div>
 </header>
 
-<div class="container">
-    <p>{{post.entry.body}}</p>
-    <p>{{post.entry.id}} - {{post.entry.created | date : format : timezone}}</p>
+<div class="container" ng-bind-html="post.entry.body">
+
+    <!--<p>{{post.entry.id}} - {{post.entry.created | date : format : timezone}}</p>-->
 </div>
