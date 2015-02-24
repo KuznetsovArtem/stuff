@@ -10,7 +10,7 @@ angular.module('ngblogApp')
             })
             .when('/post/:id?', {
                 templateUrl: 'app/blogpost/post.html',
-                controller: 'blogPostCtrl',
+                controller: 'postPageCtrl',
                 controllerAs: 'post'
             })
             .when('/item', {

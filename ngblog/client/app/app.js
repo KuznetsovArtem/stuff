@@ -5,6 +5,7 @@ angular.module('ngblogApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
+  'ngCkeditor',
   'btford.socket-io',
   'ui.bootstrap'
 ])
