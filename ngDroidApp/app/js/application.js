@@ -22,18 +22,3 @@ angular
             .bootstrap(document,
                 [ApplicationConfiguration.applicationModuleName]);
     });
-
-
-angular.module('angularjsapp.services.Cordova', [])
-    .factory('deviceReady', function(){
-        return function(done) {
-            if (typeof window.cordova === 'object') {
-                document.addEventListener('deviceready', function () {
-                    alert('dev ready');
-                    done();
-                }, false);
-            } else {
-                done();
-            }
-        };
-    });
